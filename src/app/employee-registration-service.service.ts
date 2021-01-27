@@ -12,7 +12,7 @@ export class EmployeeRegistrationServiceService {
   constructor(private http:HttpClient) { }
 
   registerEmployee(employee: object): Observable<object> {  
-    return this.http.post(`${this.baseUrl}`+'saveEmployeeInfo', employee);  
+    return this.http.post(`${this.baseUrl}`+'/saveEmployeeInfo', employee);  
   }
 
   getEmployee(id: number): Observable<Object> {  
