@@ -20,5 +20,4 @@ export class Employee {
         this.confirmPassword=employee.confirmPassword;
     }*/
 
-    constructor(){}
 }
