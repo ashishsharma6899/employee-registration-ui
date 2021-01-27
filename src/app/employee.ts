@@ -8,4 +8,17 @@ export class Employee {
     empManagerName:String;
     password:String;
     confirmPassword:String;
+
+    /*constructor(private employee:Employee) { 
+        this.empId = employee.empId;
+        this.empName=employee.empName;
+        this.phone=employee.phone;
+        this.empTeamName=employee.empTeamName;
+        this.empManagerName=employee.empManagerName;
+        this.empEmailId=employee.empEmailId;
+        this.password=employee.password;
+        this.confirmPassword=employee.confirmPassword;
+    }*/
+
+    constructor(){}
 }

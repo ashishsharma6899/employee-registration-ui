@@ -1,1 +1,127 @@
 <p>register-employee works!</p>
+<h3>Register Employee</h3>  
+<div class="row">  
+  <div class="col-sm-4"></div>  
+  <div class="col-sm-4" >  
+    <div [hidden]="submitted" style="width: 400px;">  
+      <form [formGroup]="registerEmployeeForm" #registerEmployee (ngSubmit)="registerEmployee(registerEmployee)">  
+          <div class="form-group">  
+              <label for="name">Employee Id</label>  
+              <input type="text" class="form-control"  formControlName="emp_id" data-toggle="tooltip"   
+                 data-placement="right" title="Enter Employee Id" >  
+              <div class="alert alert-danger" *ngIf = "(EmployeeId.touched) && (EmployeeId.invalid)"   
+                style="margin-top: 5px;">  
+                  <span *ngIf="EmployeeId.errors.required">Employee Id is Required</span>  
+                    <span *ngIf = "EmployeeId.errors.minlength">   
+                        MinLength Error   
+                    </span>                     
+                </div>  
+          </div>  
+
+          <div class="form-group">  
+            <label for="name">Employee Name</label>  
+            <input type="text" class="form-control"  formControlName="emp_name" data-toggle="tooltip"   
+               data-placement="right" title="Enter Employee Name" >  
+            <div class="alert alert-danger" *ngIf = "(EmployeeName.touched) && (EmployeeName.invalid)"   
+              style="margin-top: 5px;">  
+                <span *ngIf="EmployeeName.errors.required">Employee Name is Required</span>  
+                  <span *ngIf = "EmployeeName.errors.minlength">   
+                      MinLength Error   
+                  </span>                     
+              </div>  
+        </div>  
+
+
+        <div class="form-group">  
+            <label for="name">Mobile</label>  
+            <input type="text" class="form-control"  formControlName="emp_phone" data-toggle="tooltip"   
+               data-placement="right" title="Enter Employee Mobile Number" >  
+            <div class="alert alert-danger" *ngIf = "(EmployeePhone.touched) && (EmployeePhone.invalid)"   
+              style="margin-top: 5px;">  
+                <span *ngIf="EmployeePhone.errors.required">Employee Mobile Number is Required</span>  
+                  <span *ngIf = "EmployeePhone.errors.minlength">   
+                      MinLength Error   
+                  </span>                     
+              </div>  
+        </div>  
+
+        <div class="form-group">  
+            <label for="name">Team Name</label>  
+            <input type="text" class="form-control"  formControlName="emp_team_name" data-toggle="tooltip"   
+               data-placement="right" title="Enter Employee Team Name" >  
+            <div class="alert alert-danger" *ngIf = "(EmployeeTeamName.touched) && (EmployeeTeamName.invalid)"   
+              style="margin-top: 5px;">  
+                <span *ngIf="EmployeeTeamName.errors.required">Employee Team Name is Required</span>  
+                  <span *ngIf = "EmployeeTeamName.errors.minlength">   
+                      MinLength Error   
+                  </span>                     
+              </div>  
+        </div>  
+    
+          <div class="form-group">  
+              <label for="name">Email</label>  
+              <input type="text" class="form-control" formControlName="employee_email"   
+                data-toggle="tooltip" data-placement="right" title="Enter Employee Email">  
+                <div class="alert alert-danger" *ngIf = "(EmployeeEmail.touched) && (EmployeeEmail.invalid)"   
+                style="margin-top: 5px;">  
+                  <span *ngIf="EmployeeEmail.errors.required">Employee Email is Required</span>  
+                    <span *ngIf = "EmployeeEmail.errors.email">   
+                        Invalid Email Format   
+                    </span>                     
+                </div>  
+          </div>  
+
+          <div class="form-group">  
+            <label for="name">Manager Name</label>  
+            <input type="text" class="form-control"  formControlName="emp_manager_name" data-toggle="tooltip"   
+               data-placement="right" title="Enter Employee Manager Name" >  
+            <div class="alert alert-danger" *ngIf = "(EmployeeManagerName.touched) && (EmployeeManagerName.invalid)"   
+              style="margin-top: 5px;">  
+                <span *ngIf="EmployeeManagerName.errors.required">Employee Manager Name is Required</span>  
+                  <span *ngIf = "EmployeeManagerName.errors.minlength">   
+                      MinLength Error   
+                  </span>                     
+              </div>  
+        </div>  
+
+        <div class="form-group">  
+            <label for="name">Password</label>  
+            <input type="text" class="form-control"  formControlName="password" data-toggle="tooltip"   
+               data-placement="right" title="Enter Password" >  
+            <div class="alert alert-danger" *ngIf = "(EmployeePassword.touched) && (EmployeePassword.invalid)"   
+              style="margin-top: 5px;">  
+                <span *ngIf="EmployeePassword.errors.required">Password is Required</span>  
+                  <span *ngIf = "EmployeePassword.errors.minlength">   
+                      MinLength Error   
+                  </span>                     
+              </div>  
+        </div>
+        
+        <div class="form-group">  
+            <label for="name">Confirm Password</label>  
+            <input type="text" class="form-control"  formControlName="confirm_password" data-toggle="tooltip"   
+               data-placement="right" title="Enter Confirm Password" >  
+            <div class="alert alert-danger" *ngIf = "(EmployeeConfirmPassword.touched) && (EmployeeConfirmPassword.invalid)"   
+              style="margin-top: 5px;">  
+                <span *ngIf="EmployeeConfirmPassword.errors.required">Confirm Password is Required</span>  
+                  <span *ngIf = "EmployeeConfirmPassword.errors.minlength">   
+                      MinLength Error   
+                  </span>                     
+              </div>  
+        </div>
+    
+          <button type="submit" class="btn btn-success">Submit</button>  
+      </form>  
+  </div>  
+  </div>  
+  <div class="col-sm-4"></div>  
+</div>  
+<div class="row">  
+  <div class="col-sm-4"></div>  
+  <div class="col-sm-4">  
+      <div [hidden]="!submitted">  
+         <h4>Employee Registered SuccessFully!</h4> 
+      </div>        
+  </div>  
+  <div class="col-sm-4"></div>  
+</div>  
