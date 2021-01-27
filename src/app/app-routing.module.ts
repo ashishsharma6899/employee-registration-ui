@@ -4,9 +4,9 @@ import { RegisterEmployeeComponent } from './register-employee/register-employee
 import { GetEmployeeComponent } from './get-employee/get-employee.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'view-student', pathMatch: 'full' },  
-  { path: 'saveEmployeeInfo', component: RegisterEmployeeComponent }  
-  /*,{ path: 'getEmployeeInfo', component: GetEmployeeComponent },*/
+  { path: '', redirectTo: 'getEmployeeInfo', pathMatch: 'full' },  
+  { path: 'saveEmployeeInfo', component: RegisterEmployeeComponent },
+  { path: 'getEmployeeInfo', component: GetEmployeeComponent }
 ];
 
 @NgModule({

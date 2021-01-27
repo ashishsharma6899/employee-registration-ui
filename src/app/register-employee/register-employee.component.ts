@@ -33,7 +33,7 @@ export class RegisterEmployeeComponent implements OnInit {
     confirmPassword:new FormControl()
   });  
   
-  registerEmployee(registerEmployee){  
+  registerEmployee(employee){  
     this.employee=new Employee();
     this.employee.empId=this.EmployeeId.value; 
     this.employee.empName=this.EmployeeName.value; 

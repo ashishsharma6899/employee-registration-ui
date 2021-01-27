@@ -1,10 +1,9 @@
-<p>register-employee works!</p>
 <h3>Register Employee</h3>  
 <div class="row">  
   <div class="col-sm-4"></div>  
   <div class="col-sm-4" >  
     <div [hidden]="submitted" style="width: 400px;">  
-      <form [formGroup]="registerEmployeeForm" #registerEmployee (ngSubmit)="registerEmployee(registerEmployee)">  
+      <form [formGroup]="registerEmployeeForm" #registeremployee (ngSubmit)="registerEmployee(employee)">  
           <div class="form-group">  
               <label for="name">Employee Id</label>  
               <input type="text" class="form-control"  formControlName="emp_id" data-toggle="tooltip"   
@@ -121,6 +120,8 @@
   <div class="col-sm-4">  
       <div [hidden]="!submitted">  
          <h4>Employee Registered SuccessFully!</h4> 
+         <button (click)="registerEmpForm()" class='btn btn-primary'>Add More Employees</button>  
+
       </div>        
   </div>  
   <div class="col-sm-4"></div>  
