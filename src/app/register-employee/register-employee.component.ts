@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {EmployeeRegistrationServiceService} from '../employee-registration-service.service';
-import {FormControl,FormGroup,Validators} from '@angular/forms';
-import { Employee } from '../employee';  
+import { $ } from 'protractor';
+import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-register-employee',
@@ -10,84 +10,133 @@ import { Employee } from '../employee';
 })
 export class RegisterEmployeeComponent implements OnInit {
 
+  employee:Employee = new Employee();
   
-  constructor(private employeeRegistrationService:EmployeeRegistrationServiceService) {
-    
-   }
+  message:any;
 
-  employee : Employee=new Employee();  
-  submitted = false;  
+  constructor(private service:EmployeeService) { }
 
   ngOnInit(): void {
-    this.submitted=false;  
+  
   }
 
-  registerEmployeeForm=new FormGroup({  
-    empId:new FormControl(),  
-    empName:new FormControl(),
-    phone:new FormControl(),
-    empTeamName:new FormControl(),
-    empEmailId:new FormControl('',[Validators.required,Validators.email]),
-    empManagerName:new FormControl(),
-    password:new FormControl(),
-    confirmPassword:new FormControl()
-  });  
-  
-  registerEmployee(employee){  
-    this.employee=new Employee();
-    this.employee.empId=this.EmployeeId.value; 
-    this.employee.empName=this.EmployeeName.value; 
-    this.employee.phone=this.EmployeePhone.value; 
-    this.employee.empTeamName=this.EmployeeTeamName.value; 
-    this.employee.empManagerName=this.EmployeeManagerName.value; 
-    this.employee.empEmailId=this.EmployeeEmail.value; 
-    this.employee.password=this.EmployeePassword.value; 
-    this.employee.confirmPassword=this.EmployeeConfirmPassword.value; 
-    this.submitted = true;  
-    this.save();  
-  }  
-
-  save() {  
-    this.employeeRegistrationService.registerEmployee(this.employee)  
-      .subscribe(data => console.log(data), error => console.log(error));  
-    this.employee = new Employee();  
-  }  
-
-  get EmployeeId(){  
-    return this.registerEmployeeForm.get('emp_id');  
-  }  
-  
-  get EmployeeName(){  
-    return this.registerEmployeeForm.get('emp_name');  
-  }  
-  
-  get EmployeePhone(){  
-    return this.registerEmployeeForm.get('emp_phone');  
+  public registerNow(){
+    if(this.validate(this.employee))
+    {
+      let resp=this.service.registerEmployee(this.employee);
+      resp.subscribe((data)=> {
+          this.message=data
+          alert(this.message);
+          this.employee = new Employee();
+      });
+      
+    }
+     
   }
-  
-  get EmployeeTeamName(){  
-    return this.registerEmployeeForm.get('emp_team_name');  
-  } 
 
-  get EmployeeEmail(){  
-    return this.registerEmployeeForm.get('employee_email');  
-  } 
-
-  get EmployeeManagerName(){  
-    return this.registerEmployeeForm.get('emp_manager_name');  
-  } 
-
-  get EmployeePassword(){  
-    return this.registerEmployeeForm.get('password');  
-  } 
-
-  get EmployeeConfirmPassword(){  
-    return this.registerEmployeeForm.get('confirm_password');  
-  } 
-
-  registerEmpForm(){  
-    this.submitted=false;  
-    this.registerEmployeeForm.reset();  
-  }  
+  public validate(employee)
+  {
+    var empId = employee.empId;
+    var empName = employee.empName;
+    var empEmail = employee.email;
+    var mobile = employee.empPhone;
+    var teamName = employee.empTeamName;
+    var managerName = employee.empManagerName;
+    var password = employee.password;
+    var confirmPassword = employee.confirmPassword;
+    var characterRegex = /^[a-zA-Z\s]+$/;
+    var onlyNumberRegex = /^\d+$/;
+    var validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(empId==null || empId=='')
+    {
+      alert('Please Enter your Employee Id!');
+      document.getElementById("empId").nodeValue='';
+      document.getElementById("empId").focus();
+      return false;
+    }
+    else if(!onlyNumberRegex.test(empId))
+    {
+      alert('Employee Id should be in digits only!');
+      document.getElementById("empId").focus();
+      return false;
+    }
+    else if(empName==null || empName=='')
+    {
+      alert('Please Enter your Name!');
+      document.getElementById("empName").focus();
+      return false;
+    }
+    else if(!characterRegex.test(empName))
+		{
+      alert('Name is not valid, Name should be in alphabets only!');
+      document.getElementById("empName").nodeValue=' ';
+      document.getElementById("empName").focus();
+			return false;
+		}
+    else if(empEmail==null || empEmail=='')
+    {
+      alert('Please Enter your Email Id!');
+      document.getElementById("email").focus();
+      return false;
+    }
+    else if(!validEmailRegex.test(empEmail))
+    {
+      alert('Please Enter valid Email Id!');
+      document.getElementById("email").focus();
+      return false;
+    }
+    else if(mobile==null || mobile=='')
+    {
+      alert('Please Enter your Phone Number!');
+      document.getElementById("empPhone").focus();
+      return false;
+    }
+    else if(!onlyNumberRegex.test(mobile))
+    {
+      alert('Please Enter valid Mobile Number!');
+      document.getElementById("empPhone").focus();
+      return false;
+    }
+    else if(teamName==null || teamName=='')
+    {
+      alert('Please Enter Team Name!');
+      document.getElementById("empTeamName").focus();
+      return false;
+    }
+    else if(managerName==null || managerName=='')
+    {
+      alert('Please Enter Your Manager Name!');
+      document.getElementById("empManagerName").focus();
+      return false;
+    }
+    else if(!characterRegex.test(managerName))
+		{
+      alert('Manager Name is not valid, It should be in alphabets only!');
+      document.getElementById("empManagerName").nodeValue=' ';
+      document.getElementById("empManagerName").focus();
+			return false;
+    }
+    else if(password==null || password=='')
+    {
+      alert('Please Enter Password!');
+      document.getElementById("password").focus();
+      return false;
+    }
+    else if(confirmPassword==null || confirmPassword=='')
+    {
+      alert('Please Enter Confirm Password!');
+      document.getElementById("confirmPassword").focus();
+      return false;
+    }
+    else if(confirmPassword!=password)
+    {
+      alert('Password and Confirm Password is not macthed, Please enter again!');
+      document.getElementById("password").nodeValue=' ';
+      document.getElementById("confirmPassword").nodeValue=' ';
+      document.getElementById("password").focus();
+      return false;
+    }
+    return true;
+  }
 
 }

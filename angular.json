@@ -1,18 +1,14 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "6121fe82-3dbf-4387-80fd-9a76d690fa60"
+    "analytics": false
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "employee-registration-ui": {
+    "employee-registration": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -20,7 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/employee-registration-ui",
+            "outputPath": "dist/employee-registration",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,8 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-			   "src/styles.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -54,13 +49,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -69,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "employee-registration-ui:build"
+            "browserTarget": "employee-registration:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "employee-registration-ui:build:production"
+              "browserTarget": "employee-registration:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "employee-registration-ui:build"
+            "browserTarget": "employee-registration:build"
           }
         },
         "test": {
@@ -117,16 +112,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "employee-registration-ui:serve"
+            "devServerTarget": "employee-registration:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "employee-registration-ui:serve:production"
+              "devServerTarget": "employee-registration:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "employee-registration-ui"
+  "defaultProject": "employee-registration"
 }

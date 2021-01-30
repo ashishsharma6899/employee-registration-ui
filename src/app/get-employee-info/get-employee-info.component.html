@@ -2,16 +2,16 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<!-- <div style="text-align: center">
+<!--<div style="text-align: center">
     <h1>{{message}}</h1>
 </div>
 -->
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form name="registerForm">
-                <fieldset>
-                    <legend class="text-center" style="color: black;"><b>Employee Registration Form</b></legend>
+            <form name="inputForm" id="inputForm"> 
+                <br/>
+                <legend style="color: black;"><b>Employee Information</b></legend>
 
                     <div class="form-group">
                         <label for="EmployeeId"><span class="req">* </span> Employee Id:  </label>
@@ -20,60 +20,62 @@
                     </div>
 
                     <div class="form-group">
+                        <input class="btn btn-success" type="submit" name="submit_reg" value="Search" (click)="getEmpInfo()">
+                    </div>
+
+            </form>
+           <form name="dataForm" id="dataForm" hidden>
+                <fieldset>
+                    <legend class="text-center" style="color: black;"><b>Employee Information</b></legend>
+
+                    <div class="form-group">
+                        <label for="EmployeeId"><span class="req">* </span> Employee Id:  </label>
+                        <input required type="number" onKeyPress="if(this.value.length==15) return false;" pattern="/^-?\d+\.?\d*$/" [(ngModel)]="employee.empId" name="empId" id="empIdValue"
+                           readonly class="form-control phone" maxlength="28" placeholder="Enter your Employee Id" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="Name"><span class="req">* </span> Name: </label>
                         <input required type="text" [(ngModel)]="employee.empName" name="empName" id="empName"
-                            class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
+                         readonly class="form-control phone" maxlength="28" placeholder="Enter your fullname..." />
                     </div>
 
                     <div class="form-group">
                         <label for="email"><span class="req">* </span> Email: </label>
                         <input class="form-control" type="email" [(ngModel)]="employee.email" name="email" id="email" required
-                            placeholder="Enter valid email address" />
-                        <div id="errFirst"></div>
+                        readonly placeholder="Enter valid email address" />
                     </div>
 
                     <div class="form-group">
                         <label for="Mobile"><span class="req">* </span> Mobile : </label>
                         <input class="form-control" onKeyPress="if(this.value.length==15) return false;" pattern="/^-?\d+\.?\d*$/" type="number" [(ngModel)]="employee.empPhone" name="empPhone" id="empPhone"
-                            placeholder="Your Mobile Number" required />
-                        <div id="errLast"></div>
+                        readonly  placeholder="Your Mobile Number" required />
+                        
                     </div>
 
                     <div class="form-group">
                         <label for="empTeamName"><span class="req">* </span> Team Name: </label>
                         <input class="form-control" required type="text" [(ngModel)]="employee.empTeamName" name="empTeamName"
-                            id="empTeamName" placeholder="Your Team Name" />
-                        <div class="status" id="status"></div>
+                        readonly  id="empTeamName" placeholder="Your Team Name" />
                     </div>
 
                     <div class="form-group">
                         <label for="empManagerName"><span class="req">* </span> Manager Name: </label>
                         <input class="form-control" required type="text" [(ngModel)]="employee.empManagerName" name="empManagerName"
-                            id="empManagerName" placeholder="Your Team Name" />
-                        <div class="status" id="status"></div>
+                        readonly id="empManagerName" placeholder="Your Team Name" />
                     </div>
 
-                    <div class="form-group">
+                    <div class="input-group-text">
                         <label for="password"><span class="req">* </span> Password: </label>
-                        <input class="form-control" required type="password" [(ngModel)]="employee.password" name="password"
-                            id="password" placeholder="Enter your password" />
-                        <div class="status" id="status"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confirmPassword"><span class="req">* </span> Confirm Password: </label>
-                        <input class="form-control" required type="password" [(ngModel)]="employee.confirmPassword" name="confirmPassword"
-                            id="confirmPassword" placeholder="Confirm your password" />
-                        <div class="status" id="status"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="registerNow()">
-                    </div>
+                        <input class="form-control" required [type]="show ? 'text' : 'password'" [(ngModel)]="employee.password" name="password"
+                        readonly   id="password" placeholder="Enter your password" />
+                        
+                        <input type="checkbox" (click) ="showPassword()">&nbsp;<span>Show Password</span>
+                    </div>           
                 </fieldset>
-            </form><!-- ends register form -->
-            <!-- second for to fiter employee-->
-        </div><!-- ends col-6 -->
-
+            </form>
+        
+        </div>
+    
     </div>
 </div>
